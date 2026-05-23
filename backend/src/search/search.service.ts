@@ -1,23 +1,16 @@
 import { Injectable } from "@nestjs/common";
 import type { Anime } from "../anime/anime.interface";
+import { animeDatabase } from "../anime/anime.data"
 
 @Injectable()
 export class SearchService {
     searchAnime(data : string): Anime[] {
-        if (data.toLowerCase() === "jojo") {
-            return [{ "id": 1, "title": "JoJo's Bizarre Adventure" }];
+        let result: Anime[] = [];
+        for (const anime of animeDatabase) {
+            if (anime.title.toLowerCase().includes(data.toLowerCase())) {
+                result.push(anime);
+            }
         }
-        else if (data.toLowerCase() === "one piece") {
-            return [{ "id": 2, "title": "One Piece"}]
-        }
-        else if (data.toLowerCase() === "naruto") {
-            return [{ "id": 3, "title": "Naruto"}]
-        }
-        else if (data.toLowerCase() === "bleach") {
-            return [{ "id": 4, "title": "Bleach"}]
-        }
-        else {
-            return [];
-        }
+        return result;
     }
 }
