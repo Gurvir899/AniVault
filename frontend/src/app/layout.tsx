@@ -28,10 +28,10 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-screen bg-black text-white">
-        <header className="border-b border-zinc-800 px-6 py-4">
+      <body className="min-h-screen bg-slate-950 text-white">
+        <header className="border-b border-slate-700 px-6 py-4">
           <div className="flex items-center justify-between w-full">
-            <h1 className="text-3xl font-bold">
+            <h1 className="text-3xl font-bold text-sky-400">
               AniVault
             </h1>
             <div className="w-full max-w-lg">

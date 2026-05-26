@@ -7,10 +7,10 @@ type Props = {
 
 export default function SearchResults({ results }: Props) {
     return (
-        <ul className="bg-zinc-900 border border-zinc-700 rounded-lg">
+        <ul className="bg-slate-900">
             {results.map((anime) => (
-                <li key={anime.id} className="p-2 hover:bg-zinc-800">
-                    <Link href={`/anime/${anime.id}`} className="block p-2 hover:bg-zinc-800">
+                <li key={anime.id} className="hover:bg-slate-800">
+                    <Link href={`/anime/${anime.id}`} className="block p-2 hover:text-sky-400">
                         {anime.title}
                     </Link>
                 </li>

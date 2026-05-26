@@ -10,16 +10,16 @@ export default async function AnimePage({
     try {
         const anime = await getDetailsById(id);
         if (!anime) {
-            return <h1>Anime not found.</h1>
+            return <h1 className="px-6 py-8 text-slate-400">Anime not found.</h1>
         }
 
         return (
-            <div>
-                <h1>{anime.title}</h1>
-                <p>{anime.id}</p>
+            <div className="px-6 py-8">
+                <h1 className="text-2xl font-bold text-slate-100">{anime.title}</h1>
+                <p className="text-slate-500 text-sm mt-1">{anime.id}</p>
             </div>
         );
     } catch (err) {
-        return <h1>Something went wrong.</h1>
+        return <h1 className="px-6 py-8 text-slate-400">Something went wrong.</h1>
     }
 }
