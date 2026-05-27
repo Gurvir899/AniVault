@@ -2,8 +2,8 @@ import { Injectable } from "@nestjs/common";
 import mapAnime from "src/dto";
 
 @Injectable()
-export class SearchService {
-    async searchAnime(data: string) {
+export class HomeService {
+    async getHome(sort: string) {
         const response = await fetch("https://graphql.anilist.co", {
             method: "POST",
             headers: {
@@ -11,9 +11,9 @@ export class SearchService {
             },
             body: JSON.stringify({
                 query: `
-                    query ($search: String) {
-                        Page(perPage: 5) {
-                            media(search: $search, type: ANIME) {
+                    query ($sort: [MediaSort]) {
+                        Page(perPage: 10) {
+                            media(type: ANIME, sort: $sort) {
                                 id
                                 title {
                                     english
@@ -30,7 +30,7 @@ export class SearchService {
                     }
                 `,
                 variables: {
-                    search: data
+                    sort: [sort]
                 }
             })
         });

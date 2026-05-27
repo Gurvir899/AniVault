@@ -56,9 +56,11 @@ export default function SearchBar() {
         };
     }, []);
 
-    //remove focus from searchbar when path changes
+    //remove focus from searchbar and clear when path changes
     useEffect(() => {
         setIsFocused(false);
+        setQuery("");
+        setStatus("idle");
     }, [pathname]);
 
     //if user deletes query completely, reset to default state
@@ -94,7 +96,7 @@ export default function SearchBar() {
                 <input
                     ref={inputRef}
                     onFocus={() => setIsFocused(true)}
-                    className="flex-1 border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-slate-500"
+                    className="flex-1 border border-slate-300 bg-white text-black px-4 py-3 outline-none focus:border-slate-500 rounded-none placeholder:text-slate-400"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Search anime..."
@@ -108,7 +110,7 @@ export default function SearchBar() {
                 </button>
             </form>
             {showDropdown && (
-                <div className="absolute left-0 top-full mt-2 w-full z-10 bg-slate-900 border border-slate-700">
+                <div className="absolute left-0 top-full mt-2 w-full z-10 bg-white border border-slate-300">
                     {((status === "loading") || (status === "idle")) && (
                         <div className="p-3 text-slate-400">Searching...</div>
                     )}

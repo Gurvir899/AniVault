@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { NotFoundException } from "@nestjs/common";
+import mapAnime from "src/dto";
 
 @Injectable()
 export class DetailsService {
@@ -12,7 +13,22 @@ export class DetailsService {
                     query ($id: Int) {
                         Media(id: $id, type: ANIME) {
                             id
-                            title { romaji }
+                            title {
+                                english
+                                romaji
+                                native
+                            }
+                            description
+                            episodes
+                            status
+                            genres
+                            averageScore
+                            coverImage {
+                                large
+                                medium
+                                extraLarge
+                            }
+                            bannerImage
                         }
                     }
                 `,
@@ -22,15 +38,12 @@ export class DetailsService {
 
         const json = await response.json();
 
-        const anime = json.data.Media;
+        const anime = json?.data?.Media;
 
         if (!anime) {
             throw new NotFoundException("Anime not found");
         }
 
-        return {
-            id: anime.id,
-            title: anime.title.romaji
-        };
+        return mapAnime(anime);
     }
 }

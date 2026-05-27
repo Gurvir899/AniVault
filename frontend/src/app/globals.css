@@ -3,3 +3,19 @@
 body {
   font-family: var(--font-geist-sans), Arial, sans-serif;
 }
+
+.catalogue-scroll::-webkit-scrollbar {
+    height: 4px;
+}
+
+.catalogue-scroll::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.catalogue-scroll::-webkit-scrollbar-thumb {
+    background: #38bdf8;
+}
+
+.catalogue-scroll::-webkit-scrollbar-thumb:hover {
+    background: #0ea5e9;
+}
