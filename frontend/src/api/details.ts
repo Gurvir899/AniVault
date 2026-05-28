@@ -1,6 +1,6 @@
 export default async function getDetailsById(id: string) {
     const res = await fetch(
-        `http://127.0.0.1:3001/anime/${id}`
+        `${process.env.API_URL}/anime/${id}`
     );
 
     if (!res.ok) {

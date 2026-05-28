@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import type { Anime } from "@/anime/anime";
-import searchAnime from "@/api/search";
+import searchAnime from "@/api/search-client";
 import type { SubmitEvent } from "react";
 import SearchResults from "./searchresults";
 import { useRouter, usePathname } from "next/navigation";
