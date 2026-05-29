@@ -38,6 +38,6 @@ export default async function searchPage({
             </div>
         );
     } catch (err) {
-        return <h1>Something went wrong</h1>;
+        return <h1 className="px-6 py-8 text-slate-500">Something went wrong.</h1>
     }
 }

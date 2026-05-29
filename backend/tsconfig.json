@@ -3,7 +3,7 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "resolvePackageJsonExports": true,
-    "esmoduleInterop": true,
+    "esModuleInterop": true,
     "isolatedModules": true,
     "declaration": true,
     "removeComments": true,

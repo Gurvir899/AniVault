@@ -3,5 +3,11 @@ export default async function getCatalogue(query: string) {
         `http://localhost:3001/home?q=${query}`
     );
 
-    return res.json();
+    if (!res.ok) {
+        return null;
+    }
+
+    const data = await res.json();
+
+    return data ?? null;
 }
