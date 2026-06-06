@@ -79,7 +79,7 @@ export default function SearchBar() {
 
     //debounce for live updates
     useEffect(() => {
-        if (!query) return;
+        if (!query.trim()) return;
 
         const handler = setTimeout(() => {
             handleSearchValue(query);

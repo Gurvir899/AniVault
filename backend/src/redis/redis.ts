@@ -9,7 +9,11 @@ redis.on("error", (err) => {
 });
 
 export async function connectRedis() {
-    await redis.connect();
+    try {
+        await redis.connect();
+    } catch (err) {
+        console.error("Failed to connect to cache", err);
+    }
 }
 
 export default redis;

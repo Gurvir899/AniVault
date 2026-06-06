@@ -21,6 +21,7 @@ export default async function Home() {
       </div>
     );
   } catch (err) {
-    return <h1 className="px-6 py-8 text-slate-500">Something went wrong.</h1>
+    console.error("Home page error:", err)
+    return <h1 className="px-6 py-8 text-slate-500">{String(err)}</h1>
   }
 }

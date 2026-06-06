@@ -12,7 +12,7 @@ export class HomeController {
         if (cached != null) {
             return JSON.parse(cached);
         }
-        const response = await this.homeService.getHome(filter)
+        const response = await this.homeService.getHome(filter);
         await redis.set(`home:${filter}`, JSON.stringify(response), {
             EX: 3600
         });

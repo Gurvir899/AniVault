@@ -1,5 +1,40 @@
 services:
   redis:
-    image: redis:7
+    image: redis:7-alpine
     ports:
       - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  nestjs:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: 3001
+      REDIS_URL: redis://redis:6379
+      CORS_ORIGIN: ${CORS_ORIGIN}
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  nextjs:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_NEST_URL: ${NEXT_PUBLIC_NEST_URL}
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      NEST_INTERNAL_URL: http://nestjs:3001
+    depends_on:
+      - nestjs
+    restart: unless-stopped
+
+volumes:
+  redis_data:
