@@ -50,6 +50,7 @@ jobs:
           script: |
             cd ~/anivault
             aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com
+            docker-compose down
             docker-compose pull
             docker-compose up -d
             docker image prune -f
