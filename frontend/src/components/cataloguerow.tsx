@@ -12,11 +12,17 @@ export default function CatalogueRow({ animes }: Props) {
     const ref = useRef<HTMLUListElement>(null);
 
     function scrollLeft() {
-        ref.current?.scrollBy({ left: -200, behavior: "smooth" });
+        const card = ref.current?.firstElementChild as HTMLElement;
+        const gap = 12; // gap-3 = 12px
+        const scrollAmount = (card?.clientWidth ?? 200) + gap;
+        ref.current?.scrollBy({ left: -scrollAmount, behavior: "smooth" });
     }
 
     function scrollRight() {
-        ref.current?.scrollBy({ left: 200, behavior: "smooth"});
+        const card = ref.current?.firstElementChild as HTMLElement;
+        const gap = 12; // gap-3 = 12px
+        const scrollAmount = (card?.clientWidth ?? 200) + gap;
+        ref.current?.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
 
     return(
