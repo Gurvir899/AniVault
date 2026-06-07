@@ -11,14 +11,14 @@ export default async function Home() {
     );
   
     return (
-      <div className="px-75 py-8 flex flex-col gap-10">
-          {[["Trending", trending], ["Top Rated", topRated], ["Most Popular", popular]].map(([label, animes]) => (
-              <section key={label}>
-                  <h2 className="text-lg font-semibold text-slate-800 mb-3 px-8">{label}</h2>
-                      <CatalogueRow animes={animes as Anime[]} />
-              </section>
-          ))}
-      </div>
+            <div className="py-8 px-2 sm:px-10 md:px-49 flex flex-col gap-10">
+                {[["Trending", trending], ["Top Rated", topRated], ["Most Popular", popular]].map(([label, animes]) => (
+                    <section key={label}>
+                        <h2 className="text-lg font-semibold text-slate-800 mb-3 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">{label}</h2>
+                        <CatalogueRow animes={animes as Anime[]} />
+                    </section>
+                ))}
+            </div>
     );
   } catch (err) {
     console.error("Home page error:", err)

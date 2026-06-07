@@ -91,43 +91,42 @@ export default function SearchBar() {
     const showDropdown = query.length > 0 && isFocused;
 
     return (
-        <div ref={containerRef} className="relative w-full">
-            <form className="flex gap-2" onSubmit={(event) => {handleSearch(event); unfocus();}}>
-                <input
-                    ref={inputRef}
-                    onFocus={() => setIsFocused(true)}
-                    className="flex-1 border border-slate-300 bg-white text-black px-4 py-3 outline-none focus:border-slate-500 rounded-none placeholder:text-slate-400"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Search anime..."
-                />
-                <button
-                    className="bg-sky-500 text-black px-4 py-2"
-                    disabled={status === "loading"}
-                    type="submit"
-                >
-                    Search
-                </button>
-            </form>
-            {showDropdown && (
-                <div className="absolute left-0 top-full mt-2 w-full z-10 bg-white border border-slate-300">
-                    {((status === "loading") || (status === "idle")) && (
-                        <div className="p-3 text-slate-400">Searching...</div>
-                    )}
-
-                    {status === "error" && (
-                        <div className="p-3 text-red-400">{error}</div>
-                    )}
-
-                    {status === "success" && results.length === 0 && (
-                        <div className="p-3 text-slate-400">No results found</div>
-                    )}
-
-                    {status === "success" && results.length > 0 && (
-                        <SearchResults results={results} />
-                    )}
-                </div>
-            )}
-        </div>
+            <div ref={containerRef} className="relative w-full min-w-0">
+                <form className="flex gap-1 sm:gap-2 w-full min-w-0" onSubmit={(event) => {handleSearch(event); unfocus();}}>
+                    <div className="relative flex-1 min-w-0">
+                        <input
+                            ref={inputRef}
+                            onFocus={() => setIsFocused(true)}
+                            className="w-full border border-slate-300 bg-white text-black px-2 sm:px-4 py-2 sm:py-3 outline-none focus:border-slate-500 rounded-none placeholder:text-slate-400 text-sm sm:text-base"
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            placeholder="Search anime..."
+                        />
+                        {showDropdown && (
+                            <div className="absolute left-0 top-full mt-2 w-full z-10 bg-white border border-slate-300">
+                                {((status === "loading") || (status === "idle")) && (
+                                    <div className="p-3 text-slate-400">Searching...</div>
+                                )}
+                                {status === "error" && (
+                                    <div className="p-3 text-red-400">{error}</div>
+                                )}
+                                {status === "success" && results.length === 0 && (
+                                    <div className="p-3 text-slate-400">No results found</div>
+                                )}
+                                {status === "success" && results.length > 0 && (
+                                    <SearchResults results={results} />
+                                )}
+                            </div>
+                        )}
+                    </div>
+                    <button
+                        className="bg-sky-500 text-black text-sm sm:text-base px-2 sm:px-4 py-2 flex-shrink-0 mr-2 sm:mr-4"
+                        disabled={status === "loading"}
+                        type="submit"
+                    >
+                        Search
+                    </button>
+                </form>
+            </div>
     );
 }
