@@ -30,12 +30,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-screen bg-white text-black">
-        <header className="border-b border-slate-700 pl-1 sm:pl-4 py-4 bg-slate-950">
+        <header className="border-b border-slate-700 pl-1 lg:pl-4 py-4 bg-slate-950">
           <div className="flex items-center justify-between gap-2 sm:gap-4 w-full min-w-0">
             <Link href={'/'} className="text-lg sm:text-3xl font-bold text-sky-400 flex-shrink whitespace-nowrap">
               AniVault
             </Link>
-            <div className="min-w-0 flex-1 max-w-xs sm:max-w-lg">
+            <div className="min-w-0 max-w-xs lg:max-w-lg">
               <SearchBar />
             </div>
           </div>
