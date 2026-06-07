@@ -12,11 +12,11 @@ export default function CatalogueRow({ animes }: Props) {
     const ref = useRef<HTMLUListElement>(null);
 
     function scrollLeft() {
-        ref.current?.scrollBy({ left: -1, behavior: "smooth" });
+        ref.current?.scrollBy({ left: -200, behavior: "smooth" });
     }
 
     function scrollRight() {
-        ref.current?.scrollBy({ left: 1, behavior: "smooth"});
+        ref.current?.scrollBy({ left: 200, behavior: "smooth"});
     }
 
     return(

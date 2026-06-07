@@ -15,15 +15,14 @@ export default async function AnimePage({
         }
 
         return (
-            <div>
-                {anime.banner && (
-                    <img src={anime.banner} className="w-full object-cover mb-6"/>
-                )}
-                <div className="px-6 py-8">
-                    <div className="flex gap-6">
-                        <img src={anime.cover.large} className="w-32 h-48 object-cover flex-shrink-0"/>
+                <div>
+                    {anime.banner && (
+                        <img src={anime.banner} className="w-full object-cover mb-6"/>
+                    )}
+                    <div className="px-4 lg:px-12 py-8">
+                        <img src={anime.cover.large} className="w-32 sm:w-48 h-56 sm:h-72 object-cover float-left mr-6 mb-2"/>
                         <div>
-                            <h1 className="text-2xl font-bold text-slate-900">
+                            <h1 className="text-xl sm:text-2xl font-bold text-slate-900">
                                 {anime.title.english || anime.title.romaji || anime.title.native}
                             </h1>
                             {anime.title.romaji && (
@@ -41,18 +40,17 @@ export default async function AnimePage({
                                     </span>
                                 ))}
                             </div>
+                            {anime.description && (
+                                <div
+                                    className="mt-6 text-slate-700 text-sm leading-relaxed"
+                                    dangerouslySetInnerHTML={{
+                                        __html: DOMPurify.sanitize(anime.description)
+                                    }}
+                                />
+                            )}
                         </div>
                     </div>
-                    {anime.description && (
-                        <div
-                            className="mt-6 text-slate-700 text-sm leading-relaxed"
-                            dangerouslySetInnerHTML={{
-                                __html: DOMPurify.sanitize(anime.description)
-                            }}
-                        />
-                    )}
                 </div>
-            </div>
             );
     } catch (err) {
         return <h1 className="px-6 py-8 text-slate-500">Something went wrong.</h1>
