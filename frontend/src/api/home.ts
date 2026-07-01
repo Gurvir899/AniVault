@@ -5,7 +5,7 @@ export default async function getCatalogue(query: string) {
     );
 
     if (!res.ok) {
-        return null;
+        throw new Error(`Failed to fetch catalogue for "${query}": ${res.status}`);
     }
 
     const data = await res.json();

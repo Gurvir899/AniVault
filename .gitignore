@@ -89,3 +89,8 @@ frontend/.env.local
 # TypeScript
 # =========================
 *.tsbuildinfo
+
+# =========================
+# Claude
+# =========================
+.claude

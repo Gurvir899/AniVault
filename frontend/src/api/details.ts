@@ -4,7 +4,10 @@ export default async function getDetailsById(id: string) {
     );
 
     if (!res.ok) {
-        return null;
+        if (res.status === 404) {
+            return null;
+        }
+        throw new Error(`Failed to fetch anime ${id}: ${res.status}`);
     }
 
     const data = await res.json();

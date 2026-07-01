@@ -1,6 +1,7 @@
 import searchAnime from "@/api/search";
 import type { Anime } from "@/anime/anime";
 import Link from "next/link";
+import ErrorMessage from "@/components/error-message";
 
 export default async function searchPage({
     searchParams,
@@ -38,6 +39,6 @@ export default async function searchPage({
                 </div>
         );
     } catch (err) {
-        return <h1 className="px-6 py-8 text-slate-500">Something went wrong.</h1>
+        return <ErrorMessage />
     }
 }

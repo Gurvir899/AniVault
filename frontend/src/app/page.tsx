@@ -1,6 +1,7 @@
 import getCatalogue from "@/api/home";
 import type { Anime } from "@/anime/anime";
 import CatalogueRow from "@/components/cataloguerow";
+import ErrorMessage from "@/components/error-message";
 
 export default async function Home() {
   const sorts = ["TRENDING_DESC", "SCORE_DESC", "POPULARITY_DESC"];
@@ -22,6 +23,6 @@ export default async function Home() {
     );
   } catch (err) {
     console.error("Home page error:", err)
-    return <h1 className="px-6 py-8 text-slate-500">{String(err)}</h1>
+    return <ErrorMessage />
   }
 }

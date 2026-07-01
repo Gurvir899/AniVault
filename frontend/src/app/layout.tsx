@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import SearchBar from "@/components/searchbar"
 import Link from "next/link";
 import "./globals.css";
+import AuthButton from "@/components/authbutton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,7 +42,8 @@ export default function RootLayout({
             <Link href={'/'} className="text-lg sm:text-3xl font-bold text-sky-400 flex-shrink whitespace-nowrap">
               AniVault
             </Link>
-            <div className="min-w-0 max-w-xs lg:max-w-lg">
+            <div className="min-w-0 max-w-xs lg:max-w-lg flex gap-3">
+              <AuthButton />
               <SearchBar />
             </div>
           </div>

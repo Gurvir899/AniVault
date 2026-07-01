@@ -1,5 +1,6 @@
 import getDetailsById from "@/api/details";
 import DOMPurify from "isomorphic-dompurify";
+import ErrorMessage from "@/components/error-message";
 
 export default async function AnimePage({
     params,
@@ -53,6 +54,6 @@ export default async function AnimePage({
                 </div>
             );
     } catch (err) {
-        return <h1 className="px-6 py-8 text-slate-500">Something went wrong.</h1>
+        return <ErrorMessage />
     }
 }
