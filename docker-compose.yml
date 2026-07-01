@@ -19,9 +19,7 @@ services:
     restart: unless-stopped
 
   nestjs:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: ${ECR_REGISTRY}/anivault-nestjs:latest
     ports:
       - "3001:3001"
     environment:
@@ -40,11 +38,7 @@ services:
     restart: unless-stopped
 
   nextjs:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      args:
-        NEXT_PUBLIC_NEST_URL: ${NEXT_PUBLIC_NEST_URL}
+    image: ${ECR_REGISTRY}/anivault-nextjs:latest
     ports:
       - "3000:3000"
     environment:
