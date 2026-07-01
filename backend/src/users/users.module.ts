@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
+import { PublicProfileController } from './public-profile.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import User from './user.entity';
 import { JwtModule } from '@nestjs/jwt';
@@ -15,7 +16,7 @@ import { JwtGuard } from 'src/auth/jwt.guard';
     })
   ],
   providers: [UsersService, JwtGuard],
-  controllers: [UsersController],
-  exports: [UsersService]
+  controllers: [UsersController, PublicProfileController],
+  exports: [UsersService, JwtGuard]
 })
 export class UsersModule {}

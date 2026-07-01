@@ -1,6 +1,11 @@
 import getDetailsById from "@/api/details";
+import { getPostsByAnime } from "@/api/posts";
 import DOMPurify from "isomorphic-dompurify";
 import ErrorMessage from "@/components/error-message";
+import PostCard from "@/components/postcard";
+import PostForm from "@/components/postform";
+import Link from "next/link";
+import { cookies } from "next/headers";
 
 export default async function AnimePage({
     params,
@@ -14,6 +19,9 @@ export default async function AnimePage({
         if (!anime) {
             return <h1 className="px-6 py-8 text-slate-500">Anime not found.</h1>
         }
+
+        const [posts, cookieStore] = await Promise.all([getPostsByAnime(id), cookies()]);
+        const isLoggedIn = Boolean(cookieStore.get("token"));
 
         return (
                 <div>
@@ -50,6 +58,32 @@ export default async function AnimePage({
                                 />
                             )}
                         </div>
+                    </div>
+
+                    <div className="px-4 lg:px-12 pb-12 flex flex-col gap-4">
+                        <h2 className="text-lg font-semibold text-slate-800">Posts</h2>
+
+                        {isLoggedIn ? (
+                            <PostForm
+                                animeId={anime.id}
+                                animeTitle={anime.title.english || anime.title.romaji || anime.title.native}
+                                animeCoverUrl={anime.cover.extraLarge ?? null}
+                            />
+                        ) : (
+                            <p className="text-sm text-slate-500">
+                                <Link href="/login" className="text-sky-500 hover:underline">Sign in</Link> to post about this anime.
+                            </p>
+                        )}
+
+                        {posts.length === 0 ? (
+                            <p className="text-sm text-slate-400">No posts yet.</p>
+                        ) : (
+                            <ul className="flex flex-col gap-3">
+                                {posts.map((post) => (
+                                    <PostCard key={post.id} post={post} />
+                                ))}
+                            </ul>
+                        )}
                     </div>
                 </div>
             );
